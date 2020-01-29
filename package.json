@@ -2,10 +2,10 @@
   "name": "vendi",
   "version": "1.0.0",
   "description": "sample... thing",
-  "homepage":"https://github.com/sombriks/vendi",
+  "homepage": "https://github.com/sombriks/vendi",
   "main": "index.js",
   "scripts": {
-    "clean":"rm -rf dist",
+    "clean": "rm -rf dist",
     "dev": "electron-webpack dev",
     "compile": "electron-webpack",
     "dist": "npm run compile ; electron-builder"
@@ -28,5 +28,8 @@
         }
       ]
     }
+  },
+  "dependencies": {
+    "source-map-support": "^0.5.16"
   }
 }
