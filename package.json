@@ -1,0 +1,32 @@
+{
+  "name": "vendi",
+  "version": "1.0.0",
+  "description": "sample... thing",
+  "homepage":"https://github.com/sombriks/vendi",
+  "main": "index.js",
+  "scripts": {
+    "clean":"rm -rf dist",
+    "dev": "electron-webpack dev",
+    "compile": "electron-webpack",
+    "dist": "npm run compile ; electron-builder"
+  },
+  "keywords": [],
+  "author": "sombriks <sombriks@gmail.com>",
+  "license": "BSD",
+  "devDependencies": {
+    "electron": "^7.1.10",
+    "electron-builder": "^22.3.2",
+    "electron-webpack": "^2.7.4",
+    "webpack": "^4.41.5"
+  },
+  "build": {
+    "appId": "sample.vendi",
+    "linux": {
+      "target": [
+        {
+          "target": "rpm"
+        }
+      ]
+    }
+  }
+}
