@@ -6,7 +6,10 @@ module.exports = {
     client: 'sqlite3',
     useNullAsDefault: true,
     connection: {
-      filename: './dev.sqlite3'
+      filename: './vendi.dev.db'
+    },
+    migrations:{
+      directory: `${__static}/migrations`
     }
   },
 
@@ -14,7 +17,10 @@ module.exports = {
     client: 'sqlite3',
     useNullAsDefault: true,
     connection: {
-      filename: '~/.vendi.db'
+      filename: `${process.env.HOME}/.vendi.db`
+    },
+    migrations:{
+      directory: `${__static}/migrations`
     }
   }
 
