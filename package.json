@@ -8,7 +8,8 @@
     "clean": "rm -rf dist",
     "dev": "electron-webpack dev",
     "compile": "electron-webpack",
-    "dist": "npm run compile ; electron-builder"
+    "rebuild:sqlite3":"npx electron-rebuild -f -w sqlite3",
+    "dist": "npm run rebuild:sqlite3 ; npm run compile ; electron-builder"
   },
   "keywords": [],
   "author": "sombriks <sombriks@gmail.com>",
