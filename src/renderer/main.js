@@ -1,12 +1,14 @@
 import Vue from "vue";
 
 import { store } from "./store";
+import { router } from "./routes";
+
+import App from "./components/App";
 
 new Vue({
 	el: "#app",
+	name: "vendi",
 	store,
-	template: `<div>{{$store.state.hello}} Hello from {{vue}}</div>`,
-	data: {
-		vue: "the other side!",
-	},
+	router,
+	render: r => r(App),
 });

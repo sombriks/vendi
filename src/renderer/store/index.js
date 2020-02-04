@@ -3,7 +3,7 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
-const state = {hello:"Hey!"};
+const state = { hello: "Hey!" };
 
 const mutations = {};
 
