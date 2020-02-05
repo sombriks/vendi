@@ -1,9 +1,12 @@
 {
   "name": "vendi",
+  "license": "BSD",
   "version": "1.0.0",
-  "description": "sample... thing",
+  "description": "sample elctron app",
   "homepage": "https://github.com/sombriks/vendi",
   "main": "index.js",
+  "keywords": ["electron","webpack"],
+  "author": "sombriks <sombriks@gmail.com>",
   "scripts": {
     "clean": "rm -rf dist",
     "dev": "electron-webpack dev",
@@ -11,9 +14,16 @@
     "rebuild:sqlite3": "npx electron-rebuild -f -w sqlite3",
     "dist": "npm run rebuild:sqlite3 ; npm run compile ; electron-builder"
   },
-  "keywords": [],
-  "author": "sombriks <sombriks@gmail.com>",
-  "license": "BSD",
+  "dependencies": {
+    "knex": "^0.20.8",
+    "source-map-support": "^0.5.16",
+    "sqlite3": "^4.1.1",
+    "vue": "^2.6.11",
+    "vue-loader": "^15.8.3",
+    "vue-router": "^3.1.5",
+    "vue-template-compiler": "^2.6.11",
+    "vuex": "^3.1.2"
+  },
   "devDependencies": {
     "electron": "^7.1.10",
     "electron-builder": "^22.3.2",
@@ -30,15 +40,5 @@
         }
       ]
     }
-  },
-  "dependencies": {
-    "knex": "^0.20.8",
-    "source-map-support": "^0.5.16",
-    "sqlite3": "^4.1.1",
-    "vue": "^2.6.11",
-    "vue-loader": "^15.8.3",
-    "vue-router": "^3.1.5",
-    "vue-template-compiler": "^2.6.11",
-    "vuex": "^3.1.2"
   }
 }

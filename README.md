@@ -33,4 +33,4 @@ npx electron-rebuild -f -w sqlite3
 - product
 - stock
 - price
-- transaction
+- sale
