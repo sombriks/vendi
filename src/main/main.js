@@ -1,5 +1,4 @@
-"use strict";
-
+import os from "os";
 import { app, BrowserWindow, ipcMain } from "electron";
 import * as path from "path";
 import { format as formatUrl } from "url";
@@ -70,7 +69,4 @@ app.on("ready", () => {
 });
 
 // exemplo tratamento mensagem vinda da tela
-ipcMain.handle("getSysInfo", async ev => {
-  console.log(ev);
-  return await process.env;
-});
+ipcMain.handle("getSysInfo", async ev => await ({ cpu: os.cpus(), arch: os.arch(), platform:os.platform() }));
