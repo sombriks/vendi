@@ -1,6 +1,6 @@
 "use strict";
 
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, ipcMain } from "electron";
 import * as path from "path";
 import { format as formatUrl } from "url";
 import { knex } from "./database";
@@ -67,4 +67,10 @@ app.on("ready", () => {
     console.log("migrations done!");
     mainWindow = createMainWindow();
   });
+});
+
+// exemplo tratamento mensagem vinda da tela
+ipcMain.handle("getSysInfo", async ev => {
+  console.log(ev);
+  return await process.env;
 });
