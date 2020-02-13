@@ -5,7 +5,7 @@ proof of concept
 ## what to simulate
 
 - test panel for desktop capabilities
-- interfacing with hardware (readers, printers, boxes, etc)
+  - interfacing with hardware (readers, printers, boxes, etc)
 - P.O.S. simulation
   - product inquiry
   - select operator

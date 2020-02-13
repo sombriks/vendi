@@ -1,8 +1,18 @@
 import os from "os";
-import { app, BrowserWindow, ipcMain } from "electron";
+import { app, BrowserWindow, ipcMain, Menu } from "electron";
 import * as path from "path";
 import { format as formatUrl } from "url";
 import { knex } from "./database";
+
+import menu from "./components/menu";
+
+// in main/index.js, renderer/index.js or in both
+if (module.hot) {
+	module.hot.accept();
+}
+
+//
+Menu.setApplicationMenu(Menu.buildFromTemplate(menu));
 
 const isDevelopment = process.env.NODE_ENV !== "production";
 
@@ -10,63 +20,70 @@ const isDevelopment = process.env.NODE_ENV !== "production";
 let mainWindow;
 
 function createMainWindow() {
-  const window = new BrowserWindow({
-    webPreferences: { nodeIntegration: true }
-  });
+	const window = new BrowserWindow({
+		webPreferences: { nodeIntegration: true },
+	});
 
-  if (isDevelopment) {
-    window.webContents.openDevTools();
-  }
+	if (isDevelopment) {
+		window.webContents.openDevTools();
+	}
 
-  if (isDevelopment) {
-    window.loadURL(`http://localhost:${process.env.ELECTRON_WEBPACK_WDS_PORT}`);
-  } else {
-    window.loadURL(
-      formatUrl({
-        pathname: path.join(__static, "index.html"),
-        protocol: "file",
-        slashes: true
-      })
-    );
-  }
+	if (isDevelopment) {
+		window.loadURL(
+			`http://localhost:${process.env.ELECTRON_WEBPACK_WDS_PORT}`,
+		);
+	} else {
+		window.loadURL(
+			formatUrl({
+				// default production entry point
+				pathname: path.join(__dirname, "index.html"),
+				protocol: "file",
+				slashes: true,
+			}),
+		);
+	}
 
-  window.on("closed", () => {
-    mainWindow = null;
-  });
+	window.on("closed", () => {
+		mainWindow = null;
+	});
 
-  window.webContents.on("devtools-opened", () => {
-    window.focus();
-    setImmediate(() => {
-      window.focus();
-    });
-  });
+	window.webContents.on("devtools-opened", () => {
+		window.focus();
+		setImmediate(() => {
+			window.focus();
+		});
+	});
 
-  return window;
+	return window;
 }
 
 // quit application when all windows are closed
 app.on("window-all-closed", () => {
-  // on macOS it is common for applications to stay open until the user explicitly quits
-  if (process.platform !== "darwin") {
-    app.quit();
-  }
+	// on macOS it is common for applications to stay open until the user explicitly quits
+	if (process.platform !== "darwin") {
+		app.quit();
+	}
 });
 
 app.on("activate", () => {
-  // on macOS it is common to re-create a window even after all windows have been closed
-  if (mainWindow === null) {
-    mainWindow = createMainWindow();
-  }
+	// on macOS it is common to re-create a window even after all windows have been closed
+	if (mainWindow === null) {
+		mainWindow = createMainWindow();
+	}
 });
 
 // create main BrowserWindow when electron is ready
 app.on("ready", () => {
-  console.log("starting migration subsystem...");
-  knex.migrate.latest().then(_ => {
-    console.log("migrations done!");
-    mainWindow = createMainWindow();
-  });
+	console.log("starting migration subsystem...");
+	knex.migrate.latest().then(_ => {
+		console.log("migrations done!");
+		mainWindow = createMainWindow();
+	});
 });
 
 // exemplo tratamento mensagem vinda da tela
-ipcMain.handle("getSysInfo", async ev => await ({ cpu: os.cpus(), arch: os.arch(), platform:os.platform() }));
+ipcMain.handle(
+	"getSysInfo",
+	async ev =>
+		await { cpus: os.cpus(), arch: os.arch(), platform: os.platform() },
+);

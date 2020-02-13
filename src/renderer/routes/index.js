@@ -1,12 +1,15 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 
+import rotas from "../../common/rotas";
+import { ipcRenderer } from "electron";
+
 Vue.use(VueRouter);
 
 const routes = [
-	{ path: "/", redirect: "/test-panel" },
+	{ path: "/", redirect: rotas.PAINEL_TESTE.path },
 	{
-		path: "/test-panel",
+		path: rotas.PAINEL_TESTE.path,
 		component: _ =>
 			import(/* webpackChunkName: "test-panel" */ "../views/TestPanel"),
 	},
@@ -16,7 +19,7 @@ const routes = [
 			import(/* webpackChunkName: "consulta" */ "../views/Consulta"),
 	},
 	{
-		path: "/operador",
+		path: rotas.OPERADOR_SEL.path,
 		component: _ =>
 			import(/* webpackChunkName: "operador" */ "../views/Operador"),
 	},
@@ -30,4 +33,8 @@ const routes = [
 export const router = new VueRouter({
 	mode: "hash",
 	routes,
+});
+
+ipcRenderer.on("navigateTo", (ev, rota) => {
+	router.push(rota.path);
 });
