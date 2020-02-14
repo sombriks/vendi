@@ -14,14 +14,29 @@ const routes = [
 			import(/* webpackChunkName: "test-panel" */ "../views/TestPanel"),
 	},
 	{
-		path: "/consulta",
+		path: rotas.CONSULTA_PRODUTO.path,
 		component: _ =>
-			import(/* webpackChunkName: "consulta" */ "../views/Consulta"),
+			import(/* webpackChunkName: "consulta-produto" */ "../views/ConsultaProduto"),
 	},
 	{
-		path: rotas.OPERADOR_SEL.path,
+		path: rotas.ENTRADA_OPERADOR.path,
 		component: _ =>
-			import(/* webpackChunkName: "operador" */ "../views/Operador"),
+			import(/* webpackChunkName: "entrada-operador" */ "../views/EntradaOperador"),
+	},
+	{
+		path: rotas.SAIDA_OPERADOR.path,
+		component: _ =>
+			import(/* webpackChunkName: "saida-operador" */ "../views/SaidaOperador"),
+	},
+	{
+		path: rotas.REFORCO_CAIXA.path,
+		component: _ =>
+			import(/* webpackChunkName: "reforco-caixa" */ "../views/ReforcoCaixa"),
+	},
+	{
+		path: rotas.SANGRIA.path,
+		component: _ =>
+			import(/* webpackChunkName: "sangria" */ "../views/Sangria"),
 	},
 	{
 		path: "/venda",
