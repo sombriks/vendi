@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <div><h1>Cancela item</h1>
   </div>
 </template>
 
 <script>
 export default {
-  name:"venda"
+  name:"cancela-item"
 }
 </script>
 

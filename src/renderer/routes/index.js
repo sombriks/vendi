@@ -16,22 +16,30 @@ const routes = [
 	{
 		path: rotas.CONSULTA_PRODUTO.path,
 		component: _ =>
-			import(/* webpackChunkName: "consulta-produto" */ "../views/ConsultaProduto"),
+			import(
+				/* webpackChunkName: "consulta-produto" */ "../views/ConsultaProduto"
+			),
 	},
 	{
 		path: rotas.ENTRADA_OPERADOR.path,
 		component: _ =>
-			import(/* webpackChunkName: "entrada-operador" */ "../views/EntradaOperador"),
+			import(
+				/* webpackChunkName: "entrada-operador" */ "../views/EntradaOperador"
+			),
 	},
 	{
 		path: rotas.SAIDA_OPERADOR.path,
 		component: _ =>
-			import(/* webpackChunkName: "saida-operador" */ "../views/SaidaOperador"),
+			import(
+				/* webpackChunkName: "saida-operador" */ "../views/SaidaOperador"
+			),
 	},
 	{
 		path: rotas.REFORCO_CAIXA.path,
 		component: _ =>
-			import(/* webpackChunkName: "reforco-caixa" */ "../views/ReforcoCaixa"),
+			import(
+				/* webpackChunkName: "reforco-caixa" */ "../views/ReforcoCaixa"
+			),
 	},
 	{
 		path: rotas.SANGRIA.path,
@@ -39,9 +47,32 @@ const routes = [
 			import(/* webpackChunkName: "sangria" */ "../views/Sangria"),
 	},
 	{
-		path: "/venda",
+		path: rotas.ABERTURA_CAIXA.path,
 		component: _ =>
-			import(/* webpackChunkName: "venda" */ "../views/Venda"),
+			import(
+				/* webpackChunkName: "abertura-caixa" */ "../views/AberturaCaixa"
+			),
+	},
+	{
+		path: rotas.CONSULTA_CUPOM.path,
+		component: _ =>
+			import(
+				/* webpackChunkName: "consulta-cupom" */ "../views/ConsultaItem"
+			),
+	},
+	{
+		path: rotas.CANCELA_ITEM.path,
+		component: _ =>
+			import(
+				/* webpackChunkName: "cancela-item" */ "../views/CancelaItem"
+			),
+	},
+	{
+		path: rotas.CANCELA_CUPOM.path,
+		component: _ =>
+			import(
+				/* webpackChunkName: "cancela-cupom" */ "../views/CancelaCupom"
+			),
 	},
 ];
 

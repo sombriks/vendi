@@ -23,5 +23,21 @@ export default {
   SANGRIA: {
     label: "Sangria",
     path: "/sangria"
+  },
+  ABERTURA_CAIXA: {
+    label: "Abertura de caixa",
+    path: "/abertura-caixa"
+  },
+  CONSULTA_CUPOM: {
+    label: "Consulta de cupom",
+    path: "/consulta-cupom"
+  },
+  CANCELA_ITEM: {
+    label: "Cancelar item",
+    path: "/cancela-item"
+  },
+  CANCELA_CUPOM: {
+    label: "Cancelar cupom",
+    path: "/cancela-cupom"
   }
 };
