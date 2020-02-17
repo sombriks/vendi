@@ -1,5 +1,7 @@
 // Update with your config settings.
 
+const folder = "__static" in global ? __static : "./static";
+
 module.exports = {
 
   development: {
@@ -9,7 +11,7 @@ module.exports = {
       filename: './vendi.dev.db'
     },
     migrations:{
-      directory: `${__static}/migrations`
+      directory: `${folder}/migrations`
     }
   },
 
@@ -20,7 +22,7 @@ module.exports = {
       filename: `${process.env.HOME}/.vendi.db`
     },
     migrations:{
-      directory: `${__static}/migrations`
+      directory: `${folder}/migrations`
     }
   }
 
