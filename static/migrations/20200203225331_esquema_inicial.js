@@ -1,13 +1,23 @@
 exports.up = knex =>
 	knex.schema
-		.createTable("operador", tb => tb.increments())
-		.createTable("loja", tb => tb.increments())
-		.createTable("produto", tb => tb.increments())
+		.createTable("operador", tb => {
+			tb.increments();
+			tb.string("nome").notNullable();
+		})
+		.createTable("loja", tb => {
+			tb.increments();
+			tb.string("nome").notNullable();
+		})
+		.createTable("produto", tb => {
+			tb.increments();
+			tb.string("nome").notNullable();
+		})
 		.createTable("pdv", tb => {
 			tb.increments();
 			tb.integer("loja_id")
 				.notNullable()
 				.references("loja.id");
+			tb.string("nome").notNullable();
 		})
 		.createTable("estoque", tb => {
 			tb.increments();
@@ -17,6 +27,7 @@ exports.up = knex =>
 			tb.integer("loja_id")
 				.notNullable()
 				.references("loja.id");
+			tb.decimal("quantidade").notNullable();
 		})
 		.createTable("preco", tb => {
 			tb.increments();
@@ -26,6 +37,7 @@ exports.up = knex =>
 			tb.integer("loja_id")
 				.notNullable()
 				.references("loja.id");
+			tb.decimal("valor").notNullable();
 		})
 		.createTable("transacao", tb => {
 			tb.increments();
@@ -50,7 +62,7 @@ exports.up = knex =>
 			tb.integer("produto_id")
 				.notNullable()
 				.references("produto.id");
-			tb.integer("quantidade")
+			tb.decimal("quantidade")
 				.notNullable()
 				.defaultTo(1);
 			tb.decimal("valor").notNullable();
