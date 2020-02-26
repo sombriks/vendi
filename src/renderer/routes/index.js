@@ -2,6 +2,8 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 
 import rotas from "../../common/rotas";
+import eventos from "../../common/eventos";
+
 import { ipcRenderer } from "electron";
 
 Vue.use(VueRouter);
@@ -81,6 +83,6 @@ export const router = new VueRouter({
 	routes,
 });
 
-ipcRenderer.on("navigateTo", (ev, rota) => {
+ipcRenderer.on(eventos.navigateTo.name, (ev, rota) => {
 	router.push(rota.path);
 });

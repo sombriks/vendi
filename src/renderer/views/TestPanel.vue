@@ -25,6 +25,7 @@
 
 <script>
 import { ipcRenderer } from "electron";
+import eventos from "../../common/eventos";
 export default {
   name: "test-panel",
   data() {
@@ -54,7 +55,7 @@ export default {
       }
     },
     updateSysInfo() {
-      ipcRenderer.invoke("getSysInfo").then(ret => {
+      ipcRenderer.invoke(eventos.getSysInfo.name).then(ret => {
         this.sysinfo = ret;
       });
     }

@@ -1,10 +1,12 @@
 import os from "os";
-import { app, BrowserWindow, ipcMain, Menu } from "electron";
+import {app, BrowserWindow, ipcMain, Menu} from "electron";
 import * as path from "path";
-import { format as formatUrl } from "url";
-import { knex } from "./database";
+import {format as formatUrl} from "url";
+import {knex} from "./database";
 
 import menu from "./components/menu";
+
+import eventos from "../common/eventos";
 
 // in main/index.js, renderer/index.js or in both
 if (module.hot) {
@@ -21,7 +23,7 @@ let mainWindow;
 
 function createMainWindow() {
 	const window = new BrowserWindow({
-		webPreferences: { nodeIntegration: true },
+		webPreferences: {nodeIntegration: true},
 	});
 
 	if (isDevelopment) {
@@ -30,16 +32,16 @@ function createMainWindow() {
 
 	if (isDevelopment) {
 		window.loadURL(
-			`http://localhost:${process.env.ELECTRON_WEBPACK_WDS_PORT}`,
+				`http://localhost:${process.env.ELECTRON_WEBPACK_WDS_PORT}`,
 		);
 	} else {
 		window.loadURL(
-			formatUrl({
-				// default production entry point
-				pathname: path.join(__dirname, "index.html"),
-				protocol: "file",
-				slashes: true,
-			}),
+				formatUrl({
+					// default production entry point
+					pathname: path.join(__dirname, "index.html"),
+					protocol: "file",
+					slashes: true,
+				}),
 		);
 	}
 
@@ -83,7 +85,7 @@ app.on("ready", () => {
 
 // exemplo tratamento mensagem vinda da tela
 ipcMain.handle(
-	"getSysInfo",
-	async ev =>
-		await { cpus: os.cpus(), arch: os.arch(), platform: os.platform() },
+		eventos.getSysInfo.name,
+		async ev =>
+				({cpus: os.cpus(), arch: os.arch(), platform: os.platform()}),
 );

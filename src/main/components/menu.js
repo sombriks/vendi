@@ -1,7 +1,8 @@
 import rotas from "../../common/rotas";
+import eventos from "../../common/eventos";
 
 const nav = rota => (menuItem, BrowserWindow, event) =>
-	BrowserWindow.webContents.send("navigateTo", rota);
+	BrowserWindow.webContents.send(eventos.navigateTo.name, rota);
 
 export default [
 	{
