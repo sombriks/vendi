@@ -83,6 +83,6 @@ export const router = new VueRouter({
 	routes,
 });
 
-ipcRenderer.on(eventos.navigateTo.name, (ev, rota) => {
+ipcRenderer.on(eventos.navigateTo, (ev, rota) => {
 	router.push(rota.path);
 });

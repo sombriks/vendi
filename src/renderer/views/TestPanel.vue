@@ -19,7 +19,13 @@
         </tr>
       </tbody>
     </table>
-    <button @click="liveupdate()">Live update</button>
+    <button  v-if="!live" @click="liveupdate()">Live update</button>
+    <button  v-if="live" @click="liveupdate()">Stop</button>
+    <hr/>
+    <button @click="listProdutos()">Listar produtos</button>
+    <ul v-if="produtos">
+      <li v-for="p in produtos" :key="p.id">{{p.nome}}</li>
+    </ul>
   </div>
 </template>
 
@@ -36,7 +42,8 @@ export default {
         platform: "-",
         cpus: []
       },
-      interval: null
+      interval: null,
+      produtos:[],
     };
   },
   created() {
@@ -55,9 +62,12 @@ export default {
       }
     },
     updateSysInfo() {
-      ipcRenderer.invoke(eventos.getSysInfo.name).then(ret => {
+      ipcRenderer.invoke(eventos.getSysInfo).then(ret => {
         this.sysinfo = ret;
       });
+    },
+    listProdutos() {
+      ipcRenderer.invoke(eventos.listProducts,{}).then(ret => this.produtos = ret);
     }
   }
 };
